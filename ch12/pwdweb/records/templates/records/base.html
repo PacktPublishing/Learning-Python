@@ -1,0 +1,24 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link href="{% static "records/css/main.css" %}"
+          rel="stylesheet">
+    <title>{% block title %}Title{% endblock title %}</title>
+  </head>
+
+  <body>
+    <div id="page-content">
+      {% block page-content %}{% endblock page-content %}
+    </div>
+    <div id="footer">{% block footer %}{% endblock footer %}</div>
+    {% block scripts %}
+      <script
+        src="{% static "records/js/jquery-2.1.4.min.js" %}">
+      </script>
+    {% endblock scripts %}
+  </body>
+</html>

@@ -1,0 +1,16 @@
+jupyter
+ipython
+pandas
+numpy
+matplotlib
+Faker
+pep8
+beautifulsoup4
+requests
+Delorean
+xlwt
+django==1.8.17
+falcon
+Flask
+gunicorn
+cryptography

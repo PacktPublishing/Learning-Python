@@ -1,0 +1,61 @@
+{% extends "records/base.html" %}
+{% load record_extras %}
+{% block title %}Records{% endblock title %}
+
+{% block page-content %}
+  <h1>Records</h1><span name="top"></span>
+  {% include "records/messages.html" %}
+
+  {% for record in records %}
+  <div class="record {% cycle 'row-light-blue' 'row-white' %}"
+       id="record-{{ record.pk }}">
+    <div class="record-left">
+      <div class="record-list">
+        <span class="record-span">Title</span>{{ record.title }}
+      </div>
+      <div class="record-list">
+        <span class="record-span">Username</span>
+        {{ record.username }}
+      </div>
+      <div class="record-list">
+        <span class="record-span">Email</span>{{ record.email }}
+      </div>
+      <div class="record-list">
+        <span class="record-span">URL</span>
+          <a href="{{ record.url }}" target="_blank">
+            {{ record.url }}</a>
+      </div>
+      <div class="record-list">
+        <span class="record-span">Password</span>
+        {% hide_password record.plaintext %}
+      </div>
+    </div>
+    <div class="record-right">
+      <div class="record-list">
+        <span class="record-span">Notes</span>
+        <textarea rows="3" cols="40" class="record-notes"
+                  readonly>{{ record.notes }}</textarea>
+      </div>
+      <div class="record-list">
+        <span class="record-span">Last modified</span>
+        {{ record.last_modified }}
+      </div>
+      <div class="record-list">
+        <span class="record-span">Created</span>
+        {{ record.created }}
+      </div>
+
+    </div>
+    <div class="record-list-actions">
+      <a href="{% url "records:edit" pk=record.pk %}">» edit</a>
+      <a href="{% url "records:delete" pk=record.pk %}">» delete
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock page-content %}
+
+{% block footer %}
+  <p><a href="#top">Go back to top</a></p>
+  {% include "records/footer.html" %}
+{% endblock footer %}

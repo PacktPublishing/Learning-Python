@@ -1,0 +1,73 @@
+{% extends "records/base.html" %}
+{% load static from staticfiles %}
+{% block title %}
+  {% if update %}Update{% else %}Create{% endif %} Record
+{% endblock title %}
+
+{% block page-content %}
+  <h1>{% if update %}Update a{% else %}Create a new{% endif %}
+    Record
+  </h1>
+  {% include "records/messages.html" %}
+
+  <form action="." method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="fieldWrapper">{{ form.title.errors }}
+      {{ form.title.label_tag }} {{ form.title }}</div>
+
+    <div class="fieldWrapper">{{ form.username.errors }}
+      {{ form.username.label_tag }} {{ form.username }}</div>
+
+    <div class="fieldWrapper">{{ form.email.errors }}
+      {{ form.email.label_tag }} {{ form.email }}</div>
+
+    <div class="fieldWrapper">{{ form.url.errors }}
+      {{ form.url.label_tag }} {{ form.url }}</div>
+
+    <div class="fieldWrapper">{{ form.password.errors }}
+      {{ form.password.label_tag }} {{ form.password }}
+      <span id="pwd-info"></span></div>
+
+    <button type="button" id="validate-btn">
+      Validate Password</button>
+    <button type="button" id="generate-btn">
+      Generate Password</button>
+
+    <div class="fieldWrapper">{{ form.notes.errors }}
+      {{ form.notes.label_tag }} {{ form.notes }}</div>
+
+    <input type="submit"
+      value="{% if update %}Update{% else %}Insert{% endif %}">
+
+    <!-- DON'T INCLUDE THIS BUTTON IN THE BOOK CODE -->
+    <button type="button" id="fill">Fill</button>
+  </form>
+{% endblock page-content %}
+
+{% block footer %}
+  <br>{% include "records/footer.html" %}<br>
+  Go to <a href="{% url "records:list" %}">the records list</a>.
+{% endblock footer %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script src="{% static "records/js/api.js" %}"></script>
+
+  <script>// DON'T INCLUDE THIS BLOCK IN THE BOOK CODE
+    var stringGen = function(len) {
+      return Math.random().toString(36).substr(2, len);
+    }
+    var fillIn = function() {
+      $('#id_title').val(stringGen(9));
+      $('#id_username').val(stringGen(9));
+      $('#id_email').val(stringGen(5) + '@gmail.com');
+      $('#id_url').val('http://' + stringGen(9) + '.com');
+      $('#id_password').val(stringGen(12));
+      $('#id_notes').val(stringGen(9));
+    }
+    $(function() {
+      $('#fill').click(fillIn);
+    });
+  </script>
+{% endblock scripts %}

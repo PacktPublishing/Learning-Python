@@ -1,0 +1,12 @@
+{% extends "records/base.html" %}
+{% block title %}Welcome to the Records website.{% endblock %}
+
+{% block page-content %}
+  <h1>Welcome {{ user.first_name }}!</h1>
+  <div class="home-option">To create a record click
+    <a href="{% url "records:add" %}">here.</a>
+  </div>
+  <div class="home-option">To see all records click
+    <a href="{% url "records:list" %}">here.</a>
+  </div>
+{% endblock page-content %}
