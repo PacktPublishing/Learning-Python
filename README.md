@@ -1,3 +1,8 @@
+## $5 Tech Unlocked 2021!
+[Buy and download this product for only $5 on PacktPub.com](https://www.packtpub.com/)
+-----
+*The $5 campaign         runs from __December 15th 2020__ to __January 13th 2021.__*
+
 # Learning Python
 
 <a href="https://prod.packtpub.com/in/application-development/learning-python">  <img src="https://prod.packtpub.com/media/catalog/product/cache/ecd051e9670bd57df35c8f0b122d8aea/b/0/b04715_cover.png" alt="Learning Python" height="256px" align="right"></a>
